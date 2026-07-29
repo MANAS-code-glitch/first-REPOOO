@@ -1,0 +1,103 @@
+cat > '/workspaces/first-REPOOO/first code.html' <<'EOF'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yes or No Question Machine</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background: #f4f7fb;
+      color: #333;
+    }
+    .container {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+      padding: 30px;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+    }
+    input,
+    button {
+      width: 100%;
+      padding: 12px 14px;
+      margin-top: 12px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #d0d6dc;
+      box-sizing: border-box;
+    }
+    button {
+      background: #2962ff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    button:hover {
+      background: #0039cb;
+    }
+    .answer {
+      margin-top: 18px;
+      font-size: 22px;
+      font-weight: bold;
+      min-height: 36px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Yes or No Machine</h1>
+    <p>Ask a question, then click the button to get a yes/no answer.</p>
+    <input id="questionInput" type="text" placeholder="Type your question here" />
+    <button id="askButton" type="button">Ask</button>
+    <div class="answer" id="answerText"></div>
+  </div>
+
+  <script>
+    const answers = [
+      'Yes.',
+      'No.',
+      'Definitely yes.',
+      'Definitely no.',
+      'Probably yes.',
+      'Probably no.',
+      'Ask again later.',
+      'It is certain.',
+      'Not a chance.',
+      'Signs point to yes.',
+      'Signs point to no.'
+    ];
+
+    const input = document.getElementById('questionInput');
+    const button = document.getElementById('askButton');
+    const answerText = document.getElementById('answerText');
+
+    function askQuestion() {
+      const question = input.value.trim();
+      if (!question) {
+        answerText.textContent = 'Please type a question first.';
+        return;
+      }
+
+      const randomIndex = Math.floor(Math.random() * answers.length);
+      answerText.textContent = answers[randomIndex];
+    }
+
+    button.addEventListener('click', askQuestion);
+    input.addEventListener('keydown', event => {
+      if (event.key === 'Enter') {
+        askQuestion();
+      }
+    });
+  </script>
+</body>
+</html>
